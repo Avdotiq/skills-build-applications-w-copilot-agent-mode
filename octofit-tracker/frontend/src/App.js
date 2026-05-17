@@ -16,9 +16,9 @@ function App() {
 
   return (
     <div className="App container py-4">
-      <nav className="navbar navbar-expand-lg navbar-light bg-gradient rounded shadow-sm mb-4" style={{ background: 'linear-gradient(135deg, #0d6efd, #6610f2)' }}>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light rounded shadow-sm mb-4">
         <div className="container-fluid">
-          <NavLink className="navbar-brand d-flex align-items-center text-white fw-bold" to="/">
+          <NavLink className="navbar-brand d-flex align-items-center text-dark fw-bold" to="/">
             <img src={logo} alt="OctoFit logo" className="me-2 app-navbar-logo" />
             OctoFit Tracker
           </NavLink>
@@ -27,7 +27,7 @@ function App() {
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
+            aria-controls="#navbarNav"
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
@@ -36,27 +36,27 @@ function App() {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <NavLink className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'} to="/users">
+                <NavLink className={({ isActive }) => isActive ? 'nav-link active text-dark' : 'nav-link text-dark'} to="/users">
                   Users
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'} to="/teams">
+                <NavLink className={({ isActive }) => isActive ? 'nav-link active text-dark' : 'nav-link text-dark'} to="/teams">
                   Teams
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'} to="/activities">
+                <NavLink className={({ isActive }) => isActive ? 'nav-link active text-dark' : 'nav-link text-dark'} to="/activities">
                   Activities
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'} to="/workouts">
+                <NavLink className={({ isActive }) => isActive ? 'nav-link active text-dark' : 'nav-link text-dark'} to="/workouts">
                   Workouts
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'} to="/leaderboard">
+                <NavLink className={({ isActive }) => isActive ? 'nav-link active text-dark' : 'nav-link text-dark'} to="/leaderboard">
                   Leaderboard
                 </NavLink>
               </li>
