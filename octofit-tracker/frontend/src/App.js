@@ -5,6 +5,7 @@ import Leaderboard from './components/Leaderboard';
 import Teams from './components/Teams';
 import Users from './components/Users';
 import Workouts from './components/Workouts';
+import Dashboard from './components/Dashboard';
 import logo from './octofitapp-small.svg';
 
 function App() {
@@ -78,7 +79,7 @@ function App() {
       </div>
 
       <Routes>
-        <Route path="/" element={<div /> } />
+        <Route path="/" element={<Dashboard />} />
         <Route path="/users" element={<Users />} />
         <Route path="/teams" element={<Teams />} />
         <Route path="/activities" element={<Activities />} />
