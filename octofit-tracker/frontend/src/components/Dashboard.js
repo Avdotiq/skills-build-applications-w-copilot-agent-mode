@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 const Dashboard = () => {
-  const baseApiUrl = process.env.REACT_APP_CODESPACE_NAME
-    ? `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api`
-    : 'http://localhost:8000/api';
+  const baseApiUrl = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api`;
   
   const [stats, setStats] = useState({
     users: 0,

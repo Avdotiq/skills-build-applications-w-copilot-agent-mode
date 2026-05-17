@@ -1,10 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 
 const Users = () => {
-  const baseApiUrl = process.env.REACT_APP_CODESPACE_NAME
-    ? `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api`
-    : 'http://localhost:8000/api';
-  const endpoint = `${baseApiUrl}/users/`;
+  const endpoint = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/users/`;
   const [items, setItems] = useState([]);
   const [search, setSearch] = useState('');
   const [rawData, setRawData] = useState(null);
