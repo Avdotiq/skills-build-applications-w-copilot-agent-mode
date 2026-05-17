@@ -1,19 +1,16 @@
 from django.core.management.base import BaseCommand
-from django.contrib.auth import get_user_model
-from djongo import models
-
-from django.conf import settings
-
-from pymongo import MongoClient
+from octofit_tracker.models import User, Team, Activity, Leaderboard, Workout
 
 # Sample data
 USERS = [
     {"name": "Clark Kent", "email": "superman@dc.com", "team": "dc"},
     {"name": "Bruce Wayne", "email": "batman@dc.com", "team": "dc"},
     {"name": "Diana Prince", "email": "wonderwoman@dc.com", "team": "dc"},
+    {"name": "Barry Allen", "email": "flash@dc.com", "team": "dc"},
     {"name": "Tony Stark", "email": "ironman@marvel.com", "team": "marvel"},
     {"name": "Steve Rogers", "email": "captainamerica@marvel.com", "team": "marvel"},
     {"name": "Peter Parker", "email": "spiderman@marvel.com", "team": "marvel"},
+    {"name": "Natasha Romanoff", "email": "blackwidow@marvel.com", "team": "marvel"},
 ]
 
 TEAMS = [
@@ -24,7 +21,12 @@ TEAMS = [
 ACTIVITIES = [
     {"user_email": "superman@dc.com", "activity": "Flight", "duration": 60},
     {"user_email": "batman@dc.com", "activity": "Martial Arts", "duration": 45},
+    {"user_email": "wonderwoman@dc.com", "activity": "Lasso Training", "duration": 50},
+    {"user_email": "flash@dc.com", "activity": "Speed Run", "duration": 35},
     {"user_email": "ironman@marvel.com", "activity": "Suit Training", "duration": 30},
+    {"user_email": "captainamerica@marvel.com", "activity": "Shield Practice", "duration": 40},
+    {"user_email": "spiderman@marvel.com", "activity": "Web Swinging", "duration": 25},
+    {"user_email": "blackwidow@marvel.com", "activity": "Stealth Drills", "duration": 55},
 ]
 
 LEADERBOARD = [
@@ -41,24 +43,16 @@ class Command(BaseCommand):
     help = 'Populate the octofit_db database with test data'
 
     def handle(self, *args, **options):
-        client = MongoClient('localhost', 27017)
-        db = client['octofit_db']
+        User.objects.all().delete()
+        Team.objects.all().delete()
+        Activity.objects.all().delete()
+        Leaderboard.objects.all().delete()
+        Workout.objects.all().delete()
 
-        # Очистка коллекций
-        db.users.delete_many({})
-        db.teams.delete_many({})
-        db.activities.delete_many({})
-        db.leaderboard.delete_many({})
-        db.workouts.delete_many({})
-
-        # Вставка тестовых данных
-        db.users.insert_many(USERS)
-        db.teams.insert_many(TEAMS)
-        db.activities.insert_many(ACTIVITIES)
-        db.leaderboard.insert_many(LEADERBOARD)
-        db.workouts.insert_many(WORKOUTS)
-
-        # Уникальный индекс по email
-        db.users.create_index([("email", 1)], unique=True)
+        User.objects.bulk_create([User(**data) for data in USERS])
+        Team.objects.bulk_create([Team(**data) for data in TEAMS])
+        Activity.objects.bulk_create([Activity(**data) for data in ACTIVITIES])
+        Leaderboard.objects.bulk_create([Leaderboard(**data) for data in LEADERBOARD])
+        Workout.objects.bulk_create([Workout(**data) for data in WORKOUTS])
 
         self.stdout.write(self.style.SUCCESS('octofit_db успешно заполнена тестовыми данными!'))

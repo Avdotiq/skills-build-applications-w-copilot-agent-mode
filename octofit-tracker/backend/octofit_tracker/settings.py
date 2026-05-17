@@ -27,12 +27,14 @@ SECRET_KEY = 'django-insecure-bai#_4h+ku^u*fb28g8c5%o$saixjc)dbe4veo(_v^&_m7pmrr
 DEBUG = True
 
 
-# Allow localhost and GitHub Codespaces host
+# Allow localhost, testserver, and GitHub Codespaces hosts
 CODESPACE_NAME = os.environ.get('CODESPACE_NAME')
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
+    'testserver',
     '.github.dev',
+    '.app.github.dev',
 ]
 if CODESPACE_NAME:
     ALLOWED_HOSTS.append(f'{CODESPACE_NAME}-8000.app.github.dev')
