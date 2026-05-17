@@ -49,10 +49,15 @@ class Command(BaseCommand):
         Leaderboard.objects.all().delete()
         Workout.objects.all().delete()
 
-        User.objects.bulk_create([User(**data) for data in USERS])
-        Team.objects.bulk_create([Team(**data) for data in TEAMS])
-        Activity.objects.bulk_create([Activity(**data) for data in ACTIVITIES])
-        Leaderboard.objects.bulk_create([Leaderboard(**data) for data in LEADERBOARD])
-        Workout.objects.bulk_create([Workout(**data) for data in WORKOUTS])
+        for data in USERS:
+            User.objects.create(**data)
+        for data in TEAMS:
+            Team.objects.create(**data)
+        for data in ACTIVITIES:
+            Activity.objects.create(**data)
+        for data in LEADERBOARD:
+            Leaderboard.objects.create(**data)
+        for data in WORKOUTS:
+            Workout.objects.create(**data)
 
         self.stdout.write(self.style.SUCCESS('octofit_db успешно заполнена тестовыми данными!'))
